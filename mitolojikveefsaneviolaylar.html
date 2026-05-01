@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dünyanın Kayıp Sırları</title>
+    <!-- Tailwind CSS CDN'i -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Antik ve Gizemli Fontlar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #0c0b0a; /* Koyu, toprak rengi tonu */
+            color: #d1d5db; /* Açık gri metin */
+        }
+        .cinzel-font {
+            font-family: 'Cinzel Decorative', serif;
+        }
+        .story-container {
+            background: rgba(18, 17, 16, 0.8);
+            border: 1px solid rgba(139, 110, 81, 0.4); /* Antik kağıt kenarı efekti */
+            backdrop-filter: blur(5px);
+            animation: fadeIn 2s ease-in-out;
+            cursor: pointer; /* Tıklanabilir olduğunu belirtmek için imleç değiştir */
+        }
+        .story-content {
+            white-space: pre-wrap;
+            line-height: 2;
+            letter-spacing: 1px;
+            text-align: justify;
+        }
+        .button-ancient {
+            background-color: #5d4037;
+            border-bottom: 3px solid #3e2723;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: all 0.2s ease-in-out;
+        }
+        .button-ancient:hover {
+            background-color: #7b584a;
+            transform: translateY(-2px);
+            border-bottom: 5px solid #3e2723;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#0c0b0a] text-[#d1d5db]">
+
+    <!-- Ana Konteyner -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
+
+        <!-- Başlık -->
+        <h1 class="cinzel-font text-5xl md:text-7xl font-bold text-center text-amber-500 mb-8 tracking-wide">
+            Dünyanın Kayıp Sırları
+        </h1>
+
+        <!-- Hikaye Kutusu -->
+        <div id="story-box" class="story-container rounded-3xl p-8 md:p-12 max-w-4xl w-full">
+            <div id="story-header" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-[#5d4037] pb-4">
+                <h2 id="story-title" class="cinzel-font text-3xl md:text-4xl font-bold text-white mb-2 md:mb-0"></h2>
+                <div id="story-info" class="text-lg text-[#a19681]"></div>
+            </div>
+            <div id="story-content" class="story-content text-xl"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // Hikayelerimizi bir obje içinde saklıyoruz
+        const stories = {
+            apollo: {
+                title: "Apollo'nun Laneti",
+                info: "Efsanevi Yıl: M.Ö. 5. Yüzyıl",
+                content: `Apollo, kahinlik gücüyle bilinen yüce tanrı. Ancak Pythia'nın gölgeleri, onun bile göremediği kaderleri fısıldıyordu. Bir zamanlar, Delfi'nin derinliklerinde genç bir rahip, Pythia'nın kehanetlerini sorgulamaya cüret etti. Apollo'nun kutsal ışığıyla aydınlanan tapınak, aniden karanlığa büründü. O günden sonra, rahibin sesi, rüzgarın fısıltısı gibi duyulmaz oldu. Apollo'nun gücü, ona meydan okuyanlara karşı acımasızdı... Ve Delfi'nin kehanetleri, artık sadece yeminlilere açık bir sır haline geldi.`
+            },
+            medusa: {
+                title: "Medusa'nın Gözleri",
+                info: "Efsanevi Yıl: M.Ö. 8. Yüzyıl",
+                content: `Athena'nın tapınağında bir zamanlar güzelliği dillere destan bir rahibe yaşardı. O rahibenin adı Medusa idi. Poseidon'un lanetiyle, o eşsiz güzellik, yılanların dans ettiği bir dehşete dönüştü. Kim ki onun gözlerine bakmaya cüret etti, anında soğuk bir taşa dönüştü. Athena'nın öfkesi, güzelliği bir silah haline getirmişti. Ve Medusa, o günden sonra sadece acı ve yalnızlık taşıyan bir figür oldu. Onun hikayesi, insanlara tanrıların gazabının ne kadar yıkıcı olabileceğini fısıldar.`
+            },
+            icarus: {
+                title: "İkarus'un Düşüşü",
+                info: "Efsanevi Yıl: M.Ö. 1. Yüzyıl",
+                content: `Daedalus, Girit'in labirentinden kaçmak için kendi elleriyle kanatlar yaptı. Oğluna, İkarus'a, bu kanatlarla uçmanın sırrını verdi. "Ne güneşe çok yaklaş, ne de denize." diye fısıldadı babası. Ancak gökyüzünün sonsuz mavisi ve özgürlüğün sarhoşluğu, İkarus'u baştan çıkardı. Güneşe doğru yükseldi, yükseldi... Ta ki kanatlarındaki balmumu eriyene kadar. Onun düşüşü, gökyüzünde bir yıldızın kayışı gibi hızlı ve sessizdi. O anı görenler, onun bir tanrı olduğunu düşündü; ama o, sadece çok fazla cüret eden bir insandı.`
+            },
+            sisyphus: {
+                title: "Sisifos'un Laneti",
+                info: "Efsanevi Yıl: M.Ö. 6. Yüzyıl",
+                content: `Zeki ve kurnaz Kral Sisifos, tanrıları aldatmaya cüret etti. Ölüm tanrısı Thanatos'u zincirleyerek dünyada kimsenin ölmesini engelledi. Ancak Olimpos'un öfkesi büyüktü. Ceza olarak, sonsuza dek bir tepeye devasa bir kayayı itmekle lanetlendi. O kaya, tam zirveye ulaştığında tekrar aşağı yuvarlanıyordu. Sisifos'un kaderi, çaresizliğin ta kendisiydi. Yüzündeki ter damlaları, çabasının boşunalığını fısıldıyordu. Ama o, her düşüşte yeniden başlıyordu; belki de bu, onun son meydan okumasıydı...`
+            },
+            pandora: {
+                title: "Pandora'nın Kutusu",
+                info: "Efsanevi Yıl: M.Ö. 7. Yüzyıl",
+                content: `Zeus'un insanlığa bir hediyesiydi Pandora. Yanında, asla açmaması gereken bir kutu taşıyordu. O kutu, merakın fısıltılarıyla doluydu ve Pandora'nın kalbini yavaşça kemiriyordu. Sonunda, o dayanılmaz arzuya yenik düştü. Kapağı araladığı o anda, dünyanın tüm kötülükleri, acıları ve hastalıkları serbest kaldı. Onlar kaçarken, kutunun en dibinde, küçük ve parlak bir ışık kalmıştı... Umut. Ve Pandora, o günden sonra anladı ki, en büyük felaketin bile içinde, küçük bir umut ışığı her zaman var olur.`
+            },
+            gizapir: {
+                title: "Gize'deki Keops Piramidi",
+                info: "Harika Yıl: M.Ö. 2560",
+                content: `Antik Mısır'ın kumları arasında yükselen devasa bir mezar. Sadece bir yapı değil, aynı zamanda yıldızlara uzanan bir sır perdesi. Firavunlar, ruhlarının sonsuzluğa yolculuğu için bu devasa taş kütlelerini inşa ettiler. Yapının her bir taşı, bir büyü fısıltısı, bir lanet hikayesi... Bu piramidin içi, sadece ölüm değil, aynı zamanda binlerce yıllık bilgeliği de saklıyor.`
+            },
+            babil: {
+                title: "Babil'in Asma Bahçeleri",
+                info: "Harika Yıl: M.Ö. 600",
+                content: `Çölün kalbinde, göğe uzanan yeşil bir rüya. Kral Nebukadnezar'ın, vatan hasreti çeken eşi için yaptırdığı bu bahçeler, mühendislik harikası olduğu kadar, bir tutkunun da sembolüydü. Toprak yoktu, su yoktu; ama kat kat teraslarda sarkan çiçekler, fışkıran sular ve yemyeşil ağaçlar, gerçekliğin sınırlarını zorluyordu. Acaba gerçekten var oldu mu? Yoksa bu bir efsaneden daha fazlası mıydı?`
+            },
+            zeus: {
+                title: "Zeus Heykeli",
+                info: "Harika Yıl: M.Ö. 435",
+                content: `Olimpos'un kralı, yeryüzündeki tahtına oturmuştu. Phidias'ın ellerinde şekil alan bu heykel, altından cübbesi, fildişinden teniyle öylesine görkemliydi ki, ona bakanlar tanrının kendisini görmüş gibi hissediyordu. Heykelin gözleri, dünyanın tüm kaderini görmüş, dudakları ise tanrıların sırlarını fısıldıyordu. Ancak bir yangın, bu görkemli eseri küle çevirdi. Belki de bu, tanrının dünyaya bir veda mesajıydı.`
+            },
+            artemis: {
+                title: "Artemis Tapınağı",
+                info: "Harika Yıl: M.Ö. 550",
+                content: `Efesus'taki bu tapınak, tanrıça Artemis'e adanmıştı. Mermer sütunlar ve heykellerle süslü bu yapı, sadece bir ibadethane değil, aynı zamanda dünyanın dört bir yanından gelenlerin gözlerini kamaştıran bir sanat eseriydi. Ancak, bir kundaklama, bu eşsiz güzelliği yok etti. Kimilerine göre, o gece Artemis, başka bir yerdeydi. Kim bilir, belki de yanmasına izin verdi ki, insanlar tanrıların bile fanilikten muaf olmadığını anlasın...`
+            },
+            halicarnassus: {
+                title: "Halikarnas Mozolesi",
+                info: "Harika Yıl: M.Ö. 351",
+                content: `Ölen bir krala duyulan sevginin eseri. Kral Mausolus'un mezarı, o kadar görkemliydi ki, adı (Mozole) artık tüm görkemli mezar yapıları için kullanıldı. Yüzlerce heykel ve kabartma ile süslü bu yapı, insan eliyle yapılabilecek en büyük aşk anıtlarından biriydi. Ancak bir deprem, bu eseri yerle bir etti. Sanki doğa, insanlığın böylesine büyük bir aşkı sonsuzlaştırmasına razı gelmedi.`
+            },
+            rhodes: {
+                title: "Rodos Heykeli",
+                info: "Harika Yıl: M.Ö. 280",
+                content: `Rodos limanının girişinde, devasa bir tanrı heykeli yükseliyordu. Güneş tanrısı Helios'u tasvir eden bu bronz heykel, o kadar büyüktü ki, gemiler bacaklarının arasından geçiyordu. Adanın gücünü ve ihtişamını sembolize ediyordu. Fakat sadece 54 yıl ayakta kalabildi. Bir deprem, bu devasa figürü dize getirdi. Belki de bu, tanrıların kibirlerini insanlığa hatırlatma şekliydi.`
+            },
+            alexandria: {
+                title: "İskenderiye Feneri",
+                info: "Harika Yıl: M.Ö. 280",
+                content: `Geceleri denizcilere yol gösteren efsanevi bir ışık. İskenderiye Limanı'nın girişinde yükselen bu fener, mimari bir mucizeydi. Aynalar ve devasa bir ateşle donatılmış bu yapı, yüzlerce kilometre öteden görülebiliyordu. Ancak o da doğanın gücüne yenik düştü. Bir dizi deprem, bu muhteşem feneri tarihten sildi. Bugün, onun sadece hikayesi ve gölgeleri kaldı.`
+            },
+            marianatrench: {
+                title: "Mariana Çukuru",
+                info: "Keşfedilmemiş Yıl: Günümüz",
+                content: `Pasifik'in derinliklerinde, güneş ışığının ulaşamadığı bir yeraltı dünyası. Basıncın ezici bir güç olduğu bu yerde, hayaletimsi balıklar ve bioluminesan yaratıklar yaşıyor. İnsanlığın bu çukurun dibine ulaşma çabaları, uzaya gitme çabalarından çok daha az. Burası, yeryüzünde tanrıların bile dokunamadığı bir bilinmezlik, kendi canlılarıyla dolu bir evren.`
+            },
+            mountroraima: {
+                title: "Roraima Dağı",
+                info: "Keşfedilmemiş Yıl: Günümüz",
+                content: `Venezuela, Brezilya ve Guyana'nın kesişiminde, bulutların üzerinde yüzen bir masa dağı. Dik yamaçları, burayı milyonlarca yıldır yeryüzünün geri kalanından izole etti. Bu yüzden, Roraima'nın zirvesi, sadece burada bulunan, ilkel bitkiler ve nadir hayvanlarla dolu bir kayıp dünya. Burası, evrimin kendi kurallarını yazdığı, insanlığın ayak izinin bulunmadığı bir coğrafya.`
+            },
+            amazon: {
+                title: "Amazon'un Bilinmeyen Kabileleri",
+                info: "Keşfedilmemiş Yıl: Günümüz",
+                content: `Amazon'un derin ormanlarında, modern dünyadan tamamen izole yaşayan kabileler var. Onların varlığı, uzaktan çekilen fotoğraflar ve nadir görülen işaretlerle biliniyor. Bu insanlar, doğa ile uyum içinde, kendi sırlarını ve hikayelerini koruyarak yaşıyorlar. Onların medeniyeti, zamanın ve teknolojinin dokunamadığı bir sır perdesi altında, insanlığın unutulmuş geçmişini temsil ediyor.`
+            },
+            lith: {
+                title: "Lith Efsanesi",
+                info: "Türk Mitolojisi",
+                content: `Gök Tanrı'nın en sadık hizmetkarlarından biri olan Lith, göklerin ve yerin dengesini korumakla görevliydi. Bir gün, yeryüzünde bir kargaşa baş gösterince, Lith insanlara yardım etmek için yeryüzüne indi. Ancak insanoğlunun kurnazlığı ve açgözlülüğü karşısında şaşkına döndü. Gücünün bir kısmını kullanarak insanlara bilgelik aşılamaya çalışsa da, bu güç onun ruhunu yavaş yavaş yozlaştırdı. Sonunda, ne tam bir tanrı ne de tam bir insan olabildi. Ne gökyüzüne dönebildi, ne de yeryüzünde kalabildi. Yeryüzü ve gökyüzü arasındaki gri alanda, unutulmuş bir efsane olarak kaldı.`
+            },
+            sahmaran: {
+                title: "Şahmaran",
+                info: "Doğu Mitolojisi",
+                content: `Anlatılır ki, yeraltında yılanların kraliçesi Şahmaran yaşardı. Yılanlar ona sonsuz bir sadakatle bağlıydı ve onun bilgeliği tüm evreni kapsardı. İnsanlar arasında sadece Camsab adında bir genç, Şahmaran'ın sırrına vakıf olabildi. Şahmaran, tüm sırlarını ona emanet etti ve ona, asla kimseye kendisinden bahsetmemesi için yemin ettirdi. Ancak kralın hastalığı yüzünden, Camsab yeminini bozmak zorunda kaldı. Şahmaran, ihanete uğradığını biliyordu. Yine de, son kez insanlara bir bilgelik hediye etti. Öldüğünde, ruhunun yeryüzüne yılanlar aracılığıyla yayılacağını ve bu sayede yılanların sonsuz bilgeliğini koruyacağını söyledi. Bugün bile, bazıları yılanların, Şahmaran'ın ruhunu taşıdığına inanır.`
+            },
+            gobeklitepe: {
+                title: "Göbeklitepe",
+                info: "İlk Tapınak: M.Ö. 10.000",
+                content: `Şanlıurfa yakınlarındaki bu taş çemberleri, insanlık tarihindeki bilinen en eski tapınak. Avcı-toplayıcı topluluklar tarafından inşa edildiğine inanılıyor. Bu yer, insanların yerleşik hayata geçmeden önce bile inanç ve ritüelleri için bir araya geldiğini gösteriyor. Her bir dikilitaşın üzerindeki hayvan figürleri, binlerce yıllık bir bilmeceyi fısıldıyor.`
+            },
+            nevalicori: {
+                title: "Nevali Çori",
+                info: "İlk Tapınak: M.Ö. 9.000",
+                content: `Fırat Nehri kıyısında bulunan Nevali Çori, Göbeklitepe'ye benzer şekilde, tarım ve yerleşik hayattan önce inşa edilmiş bir tapınak. T şeklindeki dikilitaşlar ve heykelcikler, Neolitik dönemin inanç sistemlerine ışık tutuyor. Bu alan, insanlığın ilk kez ortak bir amaç için bir araya geldiği yerlerden biri.`
+            },
+            klausenhohle: {
+                title: "Klausenhöhle Mağarası",
+                info: "İlk Tapınak: M.Ö. 30.000",
+                content: `Almanya'da bulunan bu mağara, Paleolitik döneme ait dini ritüellerin yapıldığına dair kanıtlar barındırıyor. Mağara duvarlarına çizilen hayvan resimleri ve semboller, atalarımızın doğaüstü güçlerle iletişim kurma çabalarını gösteriyor. Bu mağara, belki de insanlığın ilk inanç fısıltılarının yankılandığı yerdi.`
+            }
+        };
+
+        // DOM elementlerini seçiyoruz
+        const storyTitle = document.getElementById('story-title');
+        const storyInfo = document.getElementById('story-info');
+        const storyContent = document.getElementById('story-content');
+        const storyBox = document.getElementById('story-box');
+        const storyKeys = Object.keys(stories);
+        let currentStoryIndex = 0;
+
+        // Hikayeyi değiştiren ana fonksiyon
+        function changeStory(storyKey) {
+            const story = stories[storyKey];
+            if (story) {
+                // DOM'u güncellemeden önce animasyon sınıfını ekle
+                storyBox.classList.remove('fadeIn');
+                void storyBox.offsetWidth; // Force reflow to restart animation
+                storyBox.classList.add('fadeIn');
+
+                // DOM'u güncelliyoruz
+                storyTitle.textContent = story.title;
+                storyInfo.textContent = story.info;
+                storyContent.textContent = story.content;
+            }
+        }
+        
+        // Slayt geçişi için bir sonraki hikayeye geçme fonksiyonu
+        function nextStory() {
+            currentStoryIndex = (currentStoryIndex + 1) % storyKeys.length;
+            changeStory(storyKeys[currentStoryIndex]);
+        }
+
+        // Hikaye kutusuna tıklama olayını ekle
+        storyBox.addEventListener('click', nextStory);
+
+        // Sayfa yüklendiğinde varsayılan hikayeyi göster
+        window.onload = function() {
+            changeStory(storyKeys[currentStoryIndex]);
+        };
+    </script>
+</body>
+</html>
